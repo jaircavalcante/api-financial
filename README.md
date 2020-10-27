@@ -40,6 +40,6 @@ Utilizar admin/admin para acessar ao H2.
 Endpoints disponíveis:
 |HTTP |	Endpoint|
 | ------ | ------ |
-|POST	| http://localhost:8081/api/v1/accounts|
-|GET	|http://localhost:8081/api/v1/accounts/{accountId}|
-|POST|	http://localhost:8081/api/v1/transactions|
+|POST	| http://localhost:8080/api/v1/accounts|
+|GET	|http://localhost:8080/api/v1/accounts/{accountId}|
+|POST|	http://localhost:8080/api/v1/transactions|
