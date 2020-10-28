@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.br.projeto.entity.Transaction;
 import com.br.projeto.entity.bean.TransactionBean;
-import com.br.projeto.exceptions.business.TransactionCreateException;
 import com.br.projeto.services.ITransactionService;
-import com.br.projeto.util.MessageProperties;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -32,11 +30,6 @@ public class TransactionController {
 	@ApiOperation(value = "Create New Transaction")
 	public ResponseEntity<Transaction> createNewAccount(@RequestBody @Valid TransactionBean transactionBean) throws Exception {
 		Transaction transaction = transactionService.create(transactionBean);
-
-		if(transaction == null) {
-			throw new TransactionCreateException(MessageProperties.getKey("transaction.not.created"));
-		}
-		
 		return new ResponseEntity<>(transaction, HttpStatus.CREATED);
 	}
 }

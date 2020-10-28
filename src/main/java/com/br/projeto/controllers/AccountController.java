@@ -1,7 +1,5 @@
 package com.br.projeto.controllers;
 
-import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,9 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.br.projeto.entity.dto.AccountDTO;
 import com.br.projeto.exceptions.business.AccountCreateException;
-import com.br.projeto.exceptions.business.AccountNotFoundException;
 import com.br.projeto.services.IAccountService;
-import com.br.projeto.util.MessageProperties;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -31,25 +27,17 @@ public class AccountController {
 
 	@PostMapping
 	@ApiOperation(value = "Create New Account")
-	public ResponseEntity<AccountDTO> createNewAccount() throws AccountCreateException, IOException {
+	public ResponseEntity<AccountDTO> createNewAccount() throws AccountCreateException, Exception {
 		AccountDTO accountNumber = accountService.createNewAccount();
-		
-		if(accountNumber == null) {
-			throw new AccountCreateException(MessageProperties.getKey("account.not.created"));
-		}
 		
 		return new ResponseEntity<AccountDTO>(accountNumber, HttpStatus.CREATED);
 	}
 
 	@GetMapping("/{accountId}")
 	@ApiOperation(value = "Get Account Details")
-	public ResponseEntity<AccountDTO> informationAccount(@PathVariable Long accountId) throws IOException {
+	public ResponseEntity<AccountDTO> informationAccount(@PathVariable Long accountId) throws Exception {
 		AccountDTO account = accountService.informationAccount(accountId);
 		
-		if(account == null) {
-			throw new AccountNotFoundException(MessageProperties.getKey("account.not.find"));
-		}
-
 		return new ResponseEntity<>(account, HttpStatus.OK);
 	}
 }
