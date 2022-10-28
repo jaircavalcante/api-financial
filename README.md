@@ -1,4 +1,4 @@
-# API Pismo
+# API Financial
 
 API criada com objetivo de criar contas e realizar transações financeiras. 
   - Java 8
